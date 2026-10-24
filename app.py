@@ -91,7 +91,6 @@ st.divider()
 
 # Product summary
 st.header("Product Profitability Analysis")
-st.write("DEBUG: Product chart section reached")
 product_summary = (
     filtered_df.groupby("Product Name", as_index=False)
     .agg(
