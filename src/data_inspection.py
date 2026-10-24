@@ -136,3 +136,29 @@ OUTPUT_PATH = PROJECT_DIR / "data" / "product_profitability_summary.csv"
 product_summary.to_csv(OUTPUT_PATH, index=False)
 
 print("\nProduct summary saved to:", OUTPUT_PATH)
+
+# Investigate the date relationship without modifying the original data
+
+print("\n========== DATE DIAGNOSTICS ==========")
+
+print("\nFirst 10 parsed dates:")
+print(df[["Order Date", "Ship Date"]].head(10).to_string(index=False))
+
+print("\nMost common order dates:")
+print(df["Order Date"].value_counts().head(10))
+
+print("\nMost common shipping dates:")
+print(df["Ship Date"].value_counts().head(10))
+
+print("\nShipping duration distribution:")
+shipping_days = (
+    df["Ship Date"] - df["Order Date"]
+).dt.days
+
+print(shipping_days.describe())
+
+print("\nFirst 10 rows with shipping duration:")
+date_check = df[["Order Date", "Ship Date"]].copy()
+date_check["Shipping Days"] = shipping_days
+print(date_check.head(10).to_string(index=False))
+
