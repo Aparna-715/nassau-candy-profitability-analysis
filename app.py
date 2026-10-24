@@ -91,15 +91,7 @@ st.divider()
 
 # Product summary
 st.header("Product Profitability Analysis")
-test_fig = px.bar(
-    x=["Product A", "Product B", "Product C"],
-    y=[1200, 950, 700],
-    title="Plotly Rendering Test"
-)
-
-st.plotly_chart(test_fig, use_container_width=True)
-
-
+st.write("DEBUG: Product chart section reached")
 product_summary = (
     filtered_df.groupby("Product Name", as_index=False)
     .agg(
